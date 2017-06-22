@@ -1,0 +1,1 @@
+Simple chrome extension convert timestamp to readable date string
