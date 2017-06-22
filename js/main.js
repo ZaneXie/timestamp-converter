@@ -1,11 +1,3 @@
-/*
- ** file: js/main.js
- ** description: javascript code for "html/main.html" page
- */
-
-var min = 1000000000000;
-var max = 2000000000000;
-
 function find(node, regex, tag_name, class_name) {
     var skip = 0;
 
@@ -17,13 +9,16 @@ function find(node, regex, tag_name, class_name) {
 
             var spanNode = document.createElement(tag_name);
             spanNode.className = class_name;
+
             spanNode.title = (new Date(parseInt(data))).toLocaleString();
             var parent = node.parentNode;
-            // spanNode.appendChild(node.cloneNode(true));
+            // @todo: add config to switch replace or hover
             spanNode.innerHTML = spanNode.title;
+            // spanNode.appendChild(node.cloneNode(true));
             parent.replaceChild(spanNode, node);
         }
-    } else if (node.nodeType === Node.ELEMENT_NODE && node.className !== class_name && node.childNodes && !/(script|style)/i.test(node.tagName)) { // 1 - Element node
+    } else if (node.nodeType === Node.ELEMENT_NODE && node.className !== class_name
+        && node.childNodes && !/(script|style)/i.test(node.tagName)) { // 1 - Element node
         $.each(node.childNodes, function (key, value) {
             find(value, regex, tag_name, class_name);
         })
